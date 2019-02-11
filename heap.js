@@ -1,16 +1,26 @@
+var ArrayTree = require('./arraytree.js');
+
 
 var Heap = function (){
 
-	var heap = {}
+	var tree = new ArrayTree();
 
+	var heap = {};
 
-	function hello () {
-		console.log('hello');
+	tree.build_heap = function () {
+
 	}
 
+	tree.sort = function () {
 
-	heap.hi = function () {
-		console.log('hi');
+	}
+
+	tree.sift_up = function () {
+
+	}
+
+	tree.sift_down = function () {
+
 	}
 
 	return heap;	
