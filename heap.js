@@ -3,9 +3,9 @@ var ArrayTree = require('./arraytree.js');
 
 var Heap = function (){
 
-	var tree = []
-
 	var heap = {};
+
+	heap.tree = [];
 
 	heap.size = 0;
 
@@ -26,19 +26,18 @@ var Heap = function (){
 		var right = (2 * index) + 1;
 		var follow = null;
 
-
-		if (heap.size >= left && tree[index] < tree[left]) {
+		if (heap.size >= left && heap.tree[index] < heap.tree[left]) {
 			follow = left;
 		}
 
-		if (heap.size >= right && tree[max] < tree[right]) {
+		if (heap.size >= right && heap.tree[index] < heap.tree[right]) {
 			follow = right;
 		}
 
 		if (follow !== null) {
-			var temp = tree[follow];
-			tree[follow] = tree[index];
-			tree[index] = temp;
+			var temp = heap.tree[follow];
+			heap.tree[follow] = heap.tree[index];
+			heap.tree[index] = temp;
 			heap.sift_down(follow);
 		}
 	}
