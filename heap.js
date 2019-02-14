@@ -5,7 +5,7 @@ var Heap = function (){
 
 	var heap = {};
 
-	heap.tree = [];
+	heap.tree = [null];
 
 	heap.size = function () {
 		return this.tree.length;
@@ -30,6 +30,21 @@ var Heap = function (){
 			heap.tree[follow] = heap.tree[index];
 			heap.tree[index] = temp;
 			heap.sift_down(follow);
+		}
+	}
+
+
+	heap.sift_up = function (value) {
+		var index = heap.size();
+		heap.tree[index] = value;
+		var parent = Math.floor(index/2);
+		while (parent >= 1 && heap.tree[parent] < heap.tree[index]) {
+			let temp = heap.tree[parent];
+			heap.tree[parent] = heap.tree[index];
+			heap.tree[index] = temp;
+			
+			index = parent;
+			parent = Math.floor(index/2);
 		}
 	}
 
