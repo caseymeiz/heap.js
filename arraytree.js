@@ -45,7 +45,7 @@ var ArrayTree = function () {
         tree[left(index)] = value;
     }
 
-    tree.exchange = function (p, q) {
+    tree.swap = function (p, q) {
         var temp = tree[q];
         tree[q] = tree[p];
         tree[p] = temp;

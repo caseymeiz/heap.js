@@ -7,34 +7,25 @@ var Heap = function (){
 
 	heap.tree = [];
 
-	heap.size = 0;
-
-	heap.build_heap = function () {
-
+	heap.size = function () {
+		return this.tree.length;
 	}
 
-	heap.sort = function () {
-
-	}
-
-	heap.sift_up = function () {
-
-	}
 
 	heap.sift_down = function (index) {
 		var left = 2 * index;
 		var right = (2 * index) + 1;
-		var follow = null;
+		var follow = index;
 
-		if (heap.size >= left && heap.tree[index] < heap.tree[left]) {
+		if (heap.size() >= left && heap.tree[follow] < heap.tree[left]) {
 			follow = left;
 		}
 
-		if (heap.size >= right && heap.tree[index] < heap.tree[right]) {
+		if (heap.size() >= right && heap.tree[follow] < heap.tree[right]) {
 			follow = right;
 		}
 
-		if (follow !== null) {
+		if (follow !== index) {
 			var temp = heap.tree[follow];
 			heap.tree[follow] = heap.tree[index];
 			heap.tree[index] = temp;
