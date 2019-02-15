@@ -11,6 +11,11 @@ var Heap = function (){
 		return this.tree.length;
 	}
 
+	heap.build_heap = function () {
+		for (var i = Math.floor(heap.size()/2); i >=1; i--) {
+			heap.sift_down(i);
+		}
+	}
 
 	heap.sift_down = function (index) {
 		var left = 2 * index;

@@ -18,3 +18,14 @@ heap2.sift_up(3);
 heap2.sift_up(1);
 
 console.log(heap2.tree);
+
+
+console.log('-------------');
+
+var heap3 = new Heap();
+
+heap3.tree = [null, 1, 9, 2, 8, 3, 7];
+
+heap3.build_heap();
+
+console.log(heap3.tree);
