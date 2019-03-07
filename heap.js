@@ -1,55 +1,69 @@
-var ArrayTree = require('./arraytree.js');
+var BinaryArrayTree = require('./binaryarraytree.js');
 
 
 var Heap = function (){
 
 	var heap = {};
 
-	heap.tree = [null];
+	var tree = [null];
 
-	heap.size = function () {
-		return this.tree.length;
+	heap.insert = function (value) {
+		tree.set_size(data.size() + 1);
+		sift_up(data, value);
 	}
 
-	heap.build_heap = function () {
-		for (var i = Math.floor(heap.size()/2); i >=1; i--) {
-			heap.sift_down(i);
+
+	heap.data = function () {
+		return data.to_string();
+	}
+
+
+	heap.delete = function (index) {
+		data.swap(index, data.size())
+		data.set_size(data.size() - 1);
+
+		if (data.get(index) > data.get(Math.floor(index/2))) {
+			sift_up(data, index);
+		} else {
+			sift_down(data, index);
 		}
 	}
 
-	heap.sift_down = function (index) {
-		var left = 2 * index;
-		var right = (2 * index) + 1;
+
+	function build_heap (tree) {
+		for (var i = Math.floor(tree.size()/2); i >= 1; i--) {
+			sift_down(tree, i);
+		}
+	}
+
+	function sift_down (tree, index) {
+		var left_index = 2 * index;
+		var right_index = (2 * index) + 1;
 		var follow = index;
 
-		if (heap.size() >= left && heap.tree[follow] < heap.tree[left]) {
-			follow = left;
+		if (tree.in_range(left_index) && tree.get(follow) < tree.get(left_index)) {
+			follow = left_index;
 		}
 
-		if (heap.size() >= right && heap.tree[follow] < heap.tree[right]) {
-			follow = right;
+		if (tree.in_range(right_index) && tree.get(follow) < tree.get(right_index)) {
+			follow = right_index;
 		}
 
 		if (follow !== index) {
-			var temp = heap.tree[follow];
-			heap.tree[follow] = heap.tree[index];
-			heap.tree[index] = temp;
-			heap.sift_down(follow);
+			tree.swap(follow, index);
+			sift_down(tree, follow);
 		}
 	}
 
 
-	heap.sift_up = function (value) {
-		var index = heap.size();
-		heap.tree[index] = value;
-		var parent = Math.floor(index/2);
-		while (parent >= 1 && heap.tree[parent] < heap.tree[index]) {
-			let temp = heap.tree[parent];
-			heap.tree[parent] = heap.tree[index];
-			heap.tree[index] = temp;
-			
-			index = parent;
-			parent = Math.floor(index/2);
+	function sift_up (tree, value) {
+		var index = tree.size();
+		tree.set(index, value);
+		var parent_index = Math.floor(index/2);
+		while (tree.in_range(parent_index) && tree.get(parent_index) < tree.get(index)) {
+			tree.swap(parent_index, index);			
+			index = parent_index;
+			parent_index = Math.floor(index/2);
 		}
 	}
 
